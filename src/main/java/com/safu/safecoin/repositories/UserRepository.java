@@ -1,6 +1,7 @@
-package com.safu.models.repositories;
+package com.safu.safecoin.repositories;
 
-import com.safu.models.User;
+
+import com.safu.safecoin.models.User;
 import org.springframework.data.repository.CrudRepository;
 
 public interface UserRepository extends CrudRepository<User, Long> {
