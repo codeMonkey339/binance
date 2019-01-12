@@ -4,4 +4,5 @@ public class AlertResponse {
     String addr;
     String transactionId;
     String level;
+    String info;
 }

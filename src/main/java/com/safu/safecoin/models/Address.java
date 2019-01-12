@@ -22,8 +22,8 @@ public class Address extends Model{
     private String proof;
     private String coin; // type of coin
     //private File image; // not implemented
-    private User reporter; // the first one reported the bad address
-    private Set<User> approvers; // users who concurred with the reporter
+    private String reporterId; // the first one reported the bad address
+    private Set<String> approverIds; // users who concurred with the reporter
     private double score;
-    private int scamType;
+    private String scamType;
 }
