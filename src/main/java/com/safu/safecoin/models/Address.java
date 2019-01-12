@@ -20,6 +20,7 @@ public class Address extends Model{
     private Long id;
     private String addr;
     private String proof;
+    private String coin; // type of coin
     //private File image; // not implemented
     private User reporter; // the first one reported the bad address
     private Set<User> approvers; // users who concurred with the reporter

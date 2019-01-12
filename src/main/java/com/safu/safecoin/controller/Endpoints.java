@@ -7,6 +7,8 @@ import com.safu.safecoin.controller.entity.SubmitResponse;
 import com.safu.safecoin.service.AddrService;
 import com.safu.safecoin.service.AlertService;
 import com.safu.safecoin.service.SubmissionNumService;
+import com.safu.safecoin.service.external.EtherscamdbService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -34,6 +36,7 @@ public class Endpoints {
 
     @Autowired
     private SubmissionNumService submissionNumService;
+
     /**
      *
      * @param userId
@@ -46,7 +49,7 @@ public class Endpoints {
      */
     @RequestMapping(value="/addr/submit", method= RequestMethod.POST)
     public SubmitResponse submitAddr(String userId, String addr, String proof, String
-            trans, MultipartFile img, int scamType){
+            trans, MultipartFile img, String scamType){
         //TODO: persist the potential address in db
         return null;
     }
@@ -59,9 +62,10 @@ public class Endpoints {
      * @return
      */
     @RequestMapping(value="/addr/query", method= RequestMethod.GET)
-    public AddrQueryResponse queryAddr(String addr, int queryType, String
+    public AddrQueryResponse queryAddr(String addr, String queryType, String
             userId){
-        //TODO:
+        addrService.getQueryResult
+                ("0xDaa29859836D97C810c7F9D350D4A1B3E8CafC9a");
         return null;
     }
 
