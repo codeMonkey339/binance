@@ -1,9 +1,38 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { Switch, Route } from 'react-router-dom'
 import Background from '../../src/img/cover/cover-10.jpg';
 
-const Query = () => (
-  <div>
+
+
+class Query extends Component {
+
+  constructor(props) {
+    super(props)
+    this.state = {score: 0, info: 'details', isMoneyLaundry: 'No'}
+  }
+
+  fetchData = () => {
+      fetch("http://localhost/query_address", {
+        method: "GET",
+        dataType: "JSON",
+        headers: {
+          "Content-Type": "application/json; charset=utf-8",
+        }
+      })
+      .then((resp) => {
+        return resp.json()
+      }) 
+      .then((data) => {
+        this.setState({ score: data.suggestion, info: data.info })                    
+      })
+      .catch((error) => {
+        console.log(error, "catch the hoop")
+      })
+    }
+
+  render() {
+    return (
+      <div>
     <div className="search-banner has-bg">
           
           <div className="bg-cover" data-paroller="true" data-paroller-factor="0.5" data-paroller-factor-xs="0.01" style={{backgroundImage: `url(${Background})`}}></div>
@@ -13,12 +42,10 @@ const Query = () => (
             <div className="input-group m-b-20">
               <input type="text" className="form-control form-control-lg" placeholder="Input wallet address" />
               <span className="input-group-append">
-              <button type="submit" className="btn btn-lg"><i className="fa fa-search"></i></button>
+              <button type="submit" onClick={this.fetchData} className="btn btn-lg"><i className="fa fa-search"></i></button>
               </span>
             </div>
             <h5 className="f-s-14 m-b-10">Query by Categories</h5>
-    
-    
             <select class="form-control col-md-5">
               <option>Check address</option>
               <option>Check money laundary</option>
@@ -52,7 +79,7 @@ const Query = () => (
                 </p>
               </div>
               <div className="total-count">
-                <span className="total-post">90</span> <span className="divider">/</span> <span className="total-comment">100</span>
+                <span className="total-post">{this.state.score}</span> <span className="divider">/</span> <span className="total-comment">100</span>
               </div>
               <div className="latest-post">
                 <h4 className="title">For your security, please dont transfer to address whose score higher than 50</h4>
@@ -80,7 +107,7 @@ const Query = () => (
                 
               </div>
               <div className="total-count">
-                <span className="total-post">details</span> <span className="divider"></span> <span className="total-comment"></span>
+                <span className="total-post">{this.state.info}</span> <span className="divider"></span> <span className="total-comment"></span>
               </div>
               <div className="latest-post">
                 
@@ -111,7 +138,7 @@ const Query = () => (
                 
               </div>
               <div className="total-count">
-                <span className="total-post">Yes</span> <span className="divider"></span> <span className="total-comment"></span>
+                <span className="total-post">{this.state.isMoneyLaundry}</span> <span className="divider"></span> <span className="total-comment"></span>
               </div>
               <div className="latest-post">
                 <h4 className="title">For your security, please dont transfer to address who is a money laundry address</h4>
@@ -139,7 +166,10 @@ const Query = () => (
   
   
   </div>
-)
+    );
+  }
+}
+
 
 
 export default Query
