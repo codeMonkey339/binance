@@ -1,3 +1,9 @@
+@import './css/style-form.css';
+@import './css/style.css';
+@import './css/style-responsive.css';
+@import './css/font-awesome/5.3/css/all.min.css';
+@import 'http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700';
+
 .App {
   text-align: center;
 }
