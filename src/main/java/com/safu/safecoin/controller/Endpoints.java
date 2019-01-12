@@ -3,6 +3,9 @@ package com.safu.safecoin.controller;
 import com.safu.safecoin.controller.entity.AddrQueryResponse;
 import com.safu.safecoin.controller.entity.Alert;
 import com.safu.safecoin.controller.entity.MoneyOriginQueryResponse;
+import com.safu.safecoin.service.AddrService;
+import com.safu.safecoin.service.AlertService;
+import com.safu.safecoin.service.SubmissionNumService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,6 +26,14 @@ public class Endpoints {
 //    public Map<String, Object> getUserById(@PathVariable("userId") long userId) {
 //    }
 
+    @Autowired
+    private AddrService addrService;
+
+    @Autowired
+    private AlertService alertService;
+
+    @Autowired
+    private SubmissionNumService submissionNumService;
     /**
      *
      * @param userId
@@ -34,7 +45,7 @@ public class Endpoints {
      * @return
      */
     @RequestMapping(value="/addr/submit", method= RequestMethod.POST)
-    public String submitAddr(String userId, String addr, String proof, String
+    public SubmitResponse submitAddr(String userId, String addr, String proof, String
             trans, MultipartFile img, int scamType){
         //TODO: persist the potential address in db
         return null;
