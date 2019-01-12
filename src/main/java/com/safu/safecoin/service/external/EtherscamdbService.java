@@ -59,9 +59,9 @@ public class EtherscamdbService {
             return response;
         }catch(IOException e){
             logger.log(Level.SEVERE,"IOException in query from etherscamdb");
+            return new EtherQueryResponse();
         }catch(ResponseExceptin e){
             logger.log(Level.SEVERE, "Bad request to etherscamdb");
-        }finally {
             return new EtherQueryResponse();
         }
     }
