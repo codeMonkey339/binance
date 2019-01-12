@@ -5,6 +5,7 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
+@Table(name = "tranxactions")
 public class Transaction {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,11 +14,11 @@ public class Transaction {
     private String txReceiptStatus;
     private Timestamp timestamp;
     @ManyToOne
-    @JoinColumn(name = "from")
-    private Wallet from;
+    @JoinColumn(name = "sender")
+    private Wallet sender;
     @ManyToOne
-    @JoinColumn(name = "to")
-    private Wallet to;
+    @JoinColumn(name = "receiver")
+    private Wallet receiver;
     private float value;
     private String coinType;
 
@@ -57,21 +58,21 @@ public class Transaction {
         return this;
     }
 
-    public Wallet getFrom() {
-        return from;
+    public Wallet getSender() {
+        return sender;
     }
 
-    public Transaction setFrom(Wallet from) {
-        this.from = from;
+    public Transaction setSender(Wallet sender) {
+        this.sender = sender;
         return this;
     }
 
-    public Wallet getTo() {
-        return to;
+    public Wallet getReceiver() {
+        return receiver;
     }
 
-    public Transaction setTo(Wallet to) {
-        this.to = to;
+    public Transaction setReceiver(Wallet receiver) {
+        this.receiver = receiver;
         return this;
     }
 
