@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>binance-hackathon</groupId>
-    <artifactId>safe-coin</artifactId>
+    <artifactId>safecoin</artifactId>
     <version>1.0-SNAPSHOT</version>
     <parent>
         <groupId>org.springframework.boot</groupId>
