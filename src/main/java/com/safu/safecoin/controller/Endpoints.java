@@ -1,8 +1,9 @@
 package com.safu.safecoin.controller;
 
 import com.safu.safecoin.controller.entity.AddrQueryResponse;
-import com.safu.safecoin.controller.entity.Alert;
+import com.safu.safecoin.controller.entity.AlertResponse;
 import com.safu.safecoin.controller.entity.MoneyOriginQueryResponse;
+import com.safu.safecoin.controller.entity.SubmitResponse;
 import com.safu.safecoin.service.AddrService;
 import com.safu.safecoin.service.AlertService;
 import com.safu.safecoin.service.SubmissionNumService;
@@ -11,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
-import sun.misc.Request;
 
 import java.util.Date;
 import java.util.List;
@@ -84,7 +84,7 @@ public class Endpoints {
      * @return
      */
     @RequestMapping(value="/alert/query", method=RequestMethod.GET)
-    public List<Alert> getLatestAlert(int num){
+    public List<AlertResponse> getLatestAlert(int num){
         //TODO
         return null;
     }

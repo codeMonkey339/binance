@@ -1,6 +1,6 @@
 package com.safu.safecoin.controller.entity;
 
-public class Alert {
+public class AlertResponse {
     String addr;
     String transactionId;
     String level;

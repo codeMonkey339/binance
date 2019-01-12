@@ -1,4 +1,4 @@
-package com.safu.safecoin.controller;
+package com.safu.safecoin.controller.entity;
 
 import lombok.Data;
 
