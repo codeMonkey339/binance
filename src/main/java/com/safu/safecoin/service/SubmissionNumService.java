@@ -21,6 +21,7 @@ public class SubmissionNumService {
 
     public List<Integer> getNumsByRange(Date date, int duration){
         if (Objects.isNull(range)){
+            range = new ArrayList<>();
             Random rand = new Random();
             IntStream.range(0, 30)
                     .forEach(i -> range.add(rand.nextInt(50) + 1));
