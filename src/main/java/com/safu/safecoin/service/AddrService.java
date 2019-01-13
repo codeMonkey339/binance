@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class AddrService {
@@ -21,6 +22,7 @@ public class AddrService {
     private EtherscamdbService etherscamdbService;
     @Autowired
     private WalletRepository walletRepository;
+    private Set<Address> addresses = new HashSet<>();
 
     private final double DENOMINATOR = 5.0;
     private final int MIN = 2;
@@ -77,6 +79,7 @@ public class AddrService {
                 .approverIds(new HashSet<>())
                 .build();
         //TODO: persist into DB
+        addresses.add(reported);
         return "";
     }
 }
