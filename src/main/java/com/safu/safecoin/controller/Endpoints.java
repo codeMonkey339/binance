@@ -8,15 +8,14 @@ import com.safu.safecoin.service.AddrService;
 import com.safu.safecoin.service.AlertService;
 import com.safu.safecoin.service.SubmissionNumService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Date;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 public class Endpoints {
 
 //    @Autowired
@@ -60,9 +59,9 @@ public class Endpoints {
      * @param userId
      * @return
      */
-    @RequestMapping(value="/addr/query", method= RequestMethod.GET)
-    public AddrQueryResponse queryAddr(String addr, String queryType, String
-            userId){
+    @RequestMapping(value="/addr/query/{addr}/{queryType}/{userId}", method= RequestMethod.GET)
+    public AddrQueryResponse queryAddr(@PathVariable String addr, @PathVariable String queryType,
+                                       @PathVariable String userId){
         return addrService.getQueryResult(addr, queryType);
     }
 
@@ -73,8 +72,8 @@ public class Endpoints {
      * @param userId
      * @return
      */
-    @RequestMapping(value="/aml/query", method=RequestMethod.GET)
-    public MoneyOriginQueryResponse queryMoneyOrign(String addr, String userId){
+    @RequestMapping(value="/aml/query/{addr}/{userId}", method=RequestMethod.GET)
+    public MoneyOriginQueryResponse queryMoneyOrign(@PathVariable String addr, @PathVariable String userId){
         //TODO: implement this if time allows, hard-code some data for demo
         return null;
     }
@@ -84,18 +83,18 @@ public class Endpoints {
      * @param num
      * @return
      */
-    @RequestMapping(value="/alert/query", method=RequestMethod.GET)
-    public List<AlertResponse> getLatestAlert(int num){
+    @RequestMapping(value="/alert/query/{num}", method=RequestMethod.GET)
+    public List<AlertResponse> getLatestAlert(@PathVariable int num){
         return alertService.getAlerts(num);
     }
 
-    @RequestMapping(value="/submit/num/query/date", method=RequestMethod.GET)
-    public int getSubmissionNumByDate(Date date){
+    @RequestMapping(value="/submit/num/query/date/{date}", method=RequestMethod.GET)
+    public int getSubmissionNumByDate(@PathVariable Date date){
         return submissionNumService.getNumByDate(date);
     }
 
-    @RequestMapping(value="/submit/num/query/range", method=RequestMethod.GET)
-    public List<Integer> getSubmissionNum30Days(Date date){
+    @RequestMapping(value="/submit/num/query/range/{date}", method=RequestMethod.GET)
+    public List<Integer> getSubmissionNum30Days(@PathVariable Date date){
         return submissionNumService.getNumsByRange(date, 30);
     }
 }
