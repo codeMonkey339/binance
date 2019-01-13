@@ -6,3 +6,4 @@
 target/
 *.mv.db
 *.trace.db
+.factorypath
