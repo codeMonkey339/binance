@@ -1,6 +1,7 @@
 package com.safu.safecoin.service;
 
 import com.safu.safecoin.controller.entity.AddrQueryResponse;
+import com.safu.safecoin.controller.entity.SubmitResponse;
 import com.safu.safecoin.models.Address;
 import com.safu.safecoin.repositories.WalletRepository;
 import com.safu.safecoin.service.external.EtherscamdbService;
@@ -10,10 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Service
 public class AddrService {
@@ -22,7 +20,7 @@ public class AddrService {
     private EtherscamdbService etherscamdbService;
     @Autowired
     private WalletRepository walletRepository;
-    private Set<Address> addresses = new HashSet<>();
+    private Map<String, Address> addresses = new HashMap<>();
 
     private final double DENOMINATOR = 5.0;
     private final int MIN = 2;
@@ -68,7 +66,7 @@ public class AddrService {
         return res;
     }
 
-    public String submitAddr(String userId, String addr, String proof, String
+    public SubmitResponse submitAddr(String userId, String addr, String proof, String
             trans, MultipartFile img, String scamType, String coinType){
         Address reported = Address
                 .builder()
@@ -79,7 +77,28 @@ public class AddrService {
                 .approverIds(new HashSet<>())
                 .build();
         //TODO: persist into DB
-        addresses.add(reported);
-        return "";
+        if (addresses.containsKey(addr)){
+            Address address = addresses.get(addr);
+            if (Objects.isNull(address.getApproverIds()) ||
+                    address.getApproverIds().isEmpty()){
+                address.setApproverIds(new HashSet<>());
+           }
+            address.getApproverIds().add(userId);
+            int order = address.getApproverIds().size() + 1;
+            return SubmitResponse
+                    .builder()
+                    .responseInfo(String.format("Reporting %s has been received. Congratulations you are " +
+                            "the %d one to report the address", addr, order))
+                    .submitOrder(order)
+                    .build();
+        }else{
+            addresses.put(addr, reported);
+            return SubmitResponse
+                    .builder()
+                    .responseInfo(String.format("Reporting %s has been received. Congratulations " +
+                            "you are the 1 one to report the address", addr))
+                    .submitOrder(1)
+                    .build();
+        }
     }
 }

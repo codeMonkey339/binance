@@ -5,8 +5,6 @@ import lombok.*;
 @Data
 @Builder
 public class SubmitResponse {
-    public SubmitResponse(String res){
-        this.responseInfo = res;
-    }
-    String responseInfo;
+   String responseInfo;
+   int submitOrder;
 }

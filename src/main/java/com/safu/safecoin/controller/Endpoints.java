@@ -48,13 +48,9 @@ public class Endpoints {
     @RequestMapping(value="/addr/submit", method= RequestMethod.POST)
     public SubmitResponse submitAddr(String userId, String addr, String proof, String
             trans, MultipartFile img, String scamType, String coinType){
-        String res = addrService.submitAddr(userId, addr, proof, trans, img,
+        return addrService.submitAddr(userId, addr, proof, trans, img,
                 scamType,
                 coinType);
-        return SubmitResponse
-                .builder()
-                .responseInfo(res)
-                .build();
    }
 
     /**
