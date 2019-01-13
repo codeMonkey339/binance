@@ -1,27 +1,9 @@
 import React, {Component} from 'react'
-import { Switch, Route, Redirect } from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom'
 import Background from '../../src/img/cover/cover-10.jpg';
 
 
-class Report extends Component {
-
-  sendRequest = () => {
-    
-    fetch('https://localhost/create_address_submission/', {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        address: 'yourValue',
-        scamType: 'yourOtherValue',
-        info: ''
-      })
-    })
-    
-   return <Redirect to="/thanks"/>
-  }
+class Thanks extends Component {
 
   render() {
     return (
@@ -31,7 +13,7 @@ class Report extends Component {
           <div className="bg-cover" data-paroller="true" data-paroller-factor="0.5" data-paroller-factor-xs="0.01" style={{backgroundImage: `url(${Background})`}}></div>
           
           <div className="container">
-            <h1>Submit bad address<br /><p>Submit to get awards</p></h1>
+            <h1>Thanks for your submission<br /><p></p></h1>
           </div>
           
         </div>
@@ -42,40 +24,30 @@ class Report extends Component {
             
             <div className="card card-forum mb-3">
               <div className="card-header">
-                Address details
+                Submission details
               </div>
               <div class="panel-body">
-              <form onSubmit={this.sendRequest}>
+              <form action="/" method="POST">
 								<fieldset>
 									<legend class="m-b-15">Legend</legend>
 									<div class="form-group row m-b-15">
 										<label class="col-md-3 col-form-label">Address</label>
 										<div class="col-md-6">
-											<input type="" class="form-control" placeholder="" />
+                                          <label class="col-md-3 col-form-label">ccccccccccccccccccc</label>
 										</div>
 									</div>
 									<div class="form-group row m-b-15">
                     <label class="col-form-label col-md-3">Some notes to prove address</label>
                     <div class="col-md-6">
-                      <textarea class="form-control" rows="3"></textarea>
+                      <label class="col-md-3 col-form-label">details</label>
                     </div>
                   </div>
                   <div class="form-group row m-b-15">
                   <label class="col-form-label col-md-3">Scam type</label>
 									<div class="col-md-6">
-										<select class="form-control">
-											<option>Money Laundry</option>
-											<option>Fraud</option>
-											<option>Fake Address</option>
-										</select>
+                                    <label class="col-md-3 col-form-label">Fraud Address</label>
 									</div>
                   </div>
-									
-									<div class="form-group row">
-										<div class="col-md-7 offset-md-3">
-											<button type="submit" class="btn btn-primary m-r-5">Submit</button>
-										</div>
-									</div>
 								</fieldset>
 							</form>
               </div>
@@ -85,11 +57,10 @@ class Report extends Component {
 					
 				<div className="register-content">
       
-				</div>	
-			
+				</div>			
   </div>
     );
   }
 }
 
-export default Report
+export default Thanks
