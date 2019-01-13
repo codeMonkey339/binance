@@ -61,11 +61,11 @@ public class AddrService {
 
 
     public List<Address> getOccurrencesFromInternal(String addr){
-        Address address = addresses.get(addr);
+//        Address address = addresses.get(addr);
         List<Address> res = new ArrayList<>();
         res.add(address);
-        IntStream.range(0, address.getApproverIds().size())
-                .forEach(i -> res.add(address));
+//        IntStream.range(0, address.getApproverIds().size())
+//                .forEach(i -> res.add(address));
         return res;
     }
 

@@ -8,11 +8,13 @@ class Query extends Component {
 
   constructor(props) {
     super(props)
-    this.state = {score: 0, info: 'details', isMoneyLaundry: 'No'}
+    this.state = {score: 0, info: 'details', isMoneyLaundry: 'No', queryAddr: '', queryType: 'Check address'}
   }
 
   fetchData = () => {
-      fetch("http://localhost:8080//addr/query", {
+    this.setState({score: 50, info: 'it is reported by 1 person'})
+    /*
+      fetch("http://localhost:8080/addr/query/"+this.state.queryAddr+"/"+this.state.queryType, {
         method: "GET",
         dataType: "JSON",
         headers: {
@@ -23,12 +25,28 @@ class Query extends Component {
         return resp.json()
       }) 
       .then((data) => {
+        console.log(data)
         this.setState({ score: data.suggestion, info: data.info })                    
       })
       .catch((error) => {
         console.log(error, "catch the hoop")
       })
+      */
     }
+
+  
+    onQueryChange(value){
+    this.setState({
+         queryAddr: value
+    });
+  }
+
+    onQueryTypeChange(value){
+      this.setState({
+        queryType: value
+      });
+    }
+
 
   render() {
     return (
@@ -40,13 +58,13 @@ class Query extends Component {
           <div className="container">
             <h1>Query to get what you need</h1>
             <div className="input-group m-b-20">
-              <input type="text" className="form-control form-control-lg" placeholder="Input wallet address" />
+              <input type="text" value={this.state.queryAddr} onChange={e => this.onQueryChange(e.target.value)} className="form-control form-control-lg" placeholder="Input wallet address" />
               <span className="input-group-append">
               <button type="submit" onClick={this.fetchData} className="btn btn-lg"><i className="fa fa-search"></i></button>
               </span>
             </div>
             <h5 className="f-s-14 m-b-10">Query by Categories</h5>
-            <select class="form-control col-md-5">
+            <select class="form-control col-md-5" value={this.state.queryType}>
               <option>Check address</option>
               <option>Check money laundary</option>
             </select>

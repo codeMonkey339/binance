@@ -1,12 +1,13 @@
 import React, {Component} from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
 import Background from '../../src/img/cover/cover-10.jpg';
+import { Link } from 'react-router-dom'
 
 
 class Report extends Component {
 
   sendRequest = () => {
-    
+    /*
     fetch('https://localhost:8080/addr/submit', {
       method: 'POST',
       headers: {
@@ -19,8 +20,8 @@ class Report extends Component {
         info: ''
       })
     })
-    
-   return <Redirect to="/thanks"/>
+    */
+   //return <Redirect to="/thanks"/>
   }
 
   render() {
@@ -73,8 +74,8 @@ class Report extends Component {
 									
 									<div class="form-group row">
 										<div class="col-md-7 offset-md-3">
-											<button type="submit" class="btn btn-primary m-r-5">Submit</button>
-										</div>
+                     <Link to="/thanks" class="btn btn-primary m-r-5">Submit</Link>
+											</div>
 									</div>
 								</fieldset>
 							</form>

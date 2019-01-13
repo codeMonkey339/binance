@@ -33,7 +33,7 @@ class Thanks extends Component {
 									<div class="form-group row m-b-15">
 										<label class="col-md-3 col-form-label">Address</label>
 										<div class="col-md-6">
-                                          <label class="col-md-3 col-form-label">ccccccccccccccccccc</label>
+                                          <label class="col-md-3 col-form-label">aaa</label>
 										</div>
 									</div>
 									<div class="form-group row m-b-15">
