@@ -12,7 +12,7 @@ class Query extends Component {
   }
 
   fetchData = () => {
-      fetch("http://localhost/query_address", {
+      fetch("http://localhost:8080//addr/query", {
         method: "GET",
         dataType: "JSON",
         headers: {

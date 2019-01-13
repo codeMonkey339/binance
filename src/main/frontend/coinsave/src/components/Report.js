@@ -7,7 +7,7 @@ class Report extends Component {
 
   sendRequest = () => {
     
-    fetch('https://localhost/create_address_submission/', {
+    fetch('https://localhost:8080/addr/submit', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
