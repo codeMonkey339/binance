@@ -22,7 +22,8 @@ public class AddrService {
     @Autowired
     private WalletRepository walletRepository;
 
-    private final int DENOMINATOR = 5;
+    private final double DENOMINATOR = 5.0;
+    private final int MIN = 2;
 
     public AddrQueryResponse getQueryResult(String addr, String queryType){
         EtherQueryResponse etherRes = etherscamdbService.queryAddr(addr);
@@ -49,8 +50,8 @@ public class AddrService {
                 return builder
                         .info(String.format("Found %d occurrences",
                                 occurences.size()))
-                        .score(0.2 + Math.min(Math.max(0, occurences.size() -
-                                2) / DENOMINATOR, 1.0))
+                        .score(Math.min(Math.max(0, 0.2 + (occurences.size() -
+                                MIN) / DENOMINATOR), 1.0))
                         .scamType(occurences.get(0).getScamType())
                         .build();
             }

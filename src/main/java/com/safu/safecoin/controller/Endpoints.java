@@ -52,10 +52,10 @@ public class Endpoints {
                 scamType,
                 coinType);
         return SubmitResponse
-                    .builder()
-                    .responseInfo(res)
-                    .build();
-    }
+                .builder()
+                .responseInfo(res)
+                .build();
+   }
 
     /**
      *

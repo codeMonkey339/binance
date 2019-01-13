@@ -2,7 +2,6 @@ package com.safu.safecoin.repositories;
 
 import com.safu.safecoin.models.Address;
 import com.safu.safecoin.models.Wallet;
-import com.sun.xml.internal.bind.v2.model.core.ID;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
