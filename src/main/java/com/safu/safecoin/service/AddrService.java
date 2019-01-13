@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.*;
+import java.util.stream.IntStream;
 
 @Service
 public class AddrService {
@@ -60,9 +61,11 @@ public class AddrService {
 
 
     public List<Address> getOccurrencesFromInternal(String addr){
+        Address address = addresses.get(addr);
         List<Address> res = new ArrayList<>();
-        walletRepository.findById(addr)
-                .map(i -> res.add(i));
+        res.add(address);
+        IntStream.range(0, address.getApproverIds().size())
+                .forEach(i -> res.add(address));
         return res;
     }
 
